@@ -9,14 +9,18 @@ function QueryResultPage(parentElement, style) {
 
 QueryResultPage.prototype.generate = async function() {
   await this.connnectToAPI();
-  this.elements = `
-  <section>
+  var searchInput = new SearchInput(this.parentElement);
+  this.elements = searchInput.generate();
+  this.elements += `
+  <section class="query-list-section">
     <ul>
   `;
   this.queries.forEach((query) => {
+    var url = (query.title).split(' ').join('%20');
     this.elements += `
       <li>
-        <a href="#0">${query.title}</a>
+        <a href="#0" url="${url}">${query.title}</a>
+        <p>${query.snippet}</p>
       </li>
     `
   });
@@ -25,6 +29,8 @@ QueryResultPage.prototype.generate = async function() {
   </section>
   `
   this.render();
+  searchInput.addEventListenerToSearchButton();
+  this.addEventListenerToList();
 }
 
 QueryResultPage.prototype.connnectToAPI = async function() {
@@ -34,4 +40,16 @@ QueryResultPage.prototype.connnectToAPI = async function() {
 
 QueryResultPage.prototype.render = function() {
   this.parentElement.innerHTML = this.elements;
+}
+
+QueryResultPage.prototype.addEventListenerToList = function() {
+  var links = document.querySelectorAll('.query-list-section ul li a');
+  links.forEach((link) => {
+    link.addEventListener('click', this.changePage);
+  })
+}
+
+QueryResultPage.prototype.changePage = function(event) {
+  var url = event.target.attributes.url.value;
+  routerInstance.buildDom(url, this.parentElement);
 }

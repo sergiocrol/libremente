@@ -8,7 +8,9 @@ function Navbar(parentElement, links, style) {
 }
 
 Navbar.prototype.generate = function() {
-  this.elements = `
+  var homeButton = new HomeButton(this.parentElement, 'image');
+  this.elements = homeButton.generate();
+  this.elements += `
   <nav>  
     <ul>
   `
@@ -22,6 +24,7 @@ Navbar.prototype.generate = function() {
   </nav>
   `
   this.render();
+  homeButton.addEventListenerToHomeButton();
 }
 
 Navbar.prototype.render = function() {

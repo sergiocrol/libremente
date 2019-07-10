@@ -14,14 +14,6 @@ LandingPage.prototype.generate = function() {
 }
 
 LandingPage.prototype.render = function() {
+  // += o =???
   this.parentElement.innerHTML = this.elements;
 }
-
-/*LandingPage.prototype.addEventListenerToSearchButton = function() {
-  var searchButton = document.querySelector('#search-button');
-  searchButton.addEventListener('click', this.changePage)
-}
-
-LandingPage.prototype.changePage = function(event) {
-  routerInstance.buildDom('/query', this.parentElement);
-}*/

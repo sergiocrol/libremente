@@ -19,7 +19,7 @@ Router.prototype.buildDom = function(url, parentElement) {
       this.generateQueryResultPage(parentElement);
       break;
     default:
-      this.generateLandingPage(parentElement);
+      this.generateCardInfoPage(parentElement, url);
   }
 }
 
@@ -40,6 +40,11 @@ Router.prototype.generatePersonalInfoPage = function(parentElement) {
 
 Router.prototype.generateQueryResultPage = async function(parentElement) {
   this.page = new QueryResultPage(parentElement);
+  await this.page.generate();
+}
+
+Router.prototype.generateCardInfoPage = async function(parentElement, url) {
+  this.page = new CardInfoPage(parentElement, url);
   await this.page.generate();
 }
 

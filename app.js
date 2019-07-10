@@ -7,7 +7,7 @@ function main() {
   var navbarInstance = null;
   var links = [
     {name: 'My library', url: '/library'},
-    {name: 'About me', url: '/me'}
+    {name: 'Personal info', url: '/me'}
   ]
 
   generateLayout();
