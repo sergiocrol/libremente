@@ -56,6 +56,7 @@ html, body {
   align-items: center;
   box-shadow: 0px 9px 17px -10px rgba(143,143,143,1);
   padding: 0 10px;
+  z-index: 1;
 }
 
 #header-site nav ul li a {
@@ -245,6 +246,8 @@ input, button, submit { border: none; }
   background-position: bottom;
   animation: 35s linear 0s infinite bp;
   margin-bottom: 20px;
+  position: relative;
+  border-bottom: 1px solid lightgray;
 }
 
 @keyframes bp {
@@ -260,7 +263,7 @@ input, button, submit { border: none; }
 #header-section h2 {
   margin-bottom: 40px;
   font-size: 30px;
-  color: dimgray;
+  color: rgba(105, 105, 105, 0.767);
   letter-spacing: 2px;
   border-right: .05em solid;
   animation: caret 1s steps(1) infinite;
@@ -279,18 +282,13 @@ input, button, submit { border: none; }
   border-top: .12em solid #e02c56;
   content: "";
   position: absolute;
-    right: 100%;
-    bottom: -8px;
-    left: 0;
+  right: 100%;
+  bottom: -8px;
+  left: 0;
   animation: under 2s cubic-bezier(0,.5,0,1) 1;
-              border-color:  #e02c56;
+  border-color:  #e02c56;
 }
 
-/*.card-info-header:hover:before {
-  visibility: visible;
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
-}*/
 
 @keyframes under {
   0%, 10% {
@@ -306,6 +304,7 @@ input, button, submit { border: none; }
     right: 0;
   }
 }
+
 
 @keyframes caret {
   50% {
@@ -638,4 +637,27 @@ background: #ec6685;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.ellipsis {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 40px;
+	font-weight:  100;
+	letter-spacing: 2px;
+	text-align: center;
+	color: #f35626;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  -webkit-animation: hue 10s infinite linear;
+  margin: 30px 0;
+}
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
 }
