@@ -26,6 +26,7 @@ SearchInput.prototype.changePage = function(event) {
   if(searchInput.value.trim() === '') {
     alert('Debes introducir un texto');
   }else{
-    routerInstance.buildDom('/query', this.parentElement);
+    console.log(this.parentElement.parentElement.parentElement);
+    routerInstance.buildDom('/query', this.parentElement.parentElement.parentElement);
   }
 }

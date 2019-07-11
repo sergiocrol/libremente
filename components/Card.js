@@ -16,16 +16,18 @@ Card.prototype.generate = function() {
   var button = favoriteButton.generate();
   this.elements = `
   <section class="card">
-    <div class="card-container">
+    <div class="card-image">
       <img src="${this.info.picture}"/>
     </div>
+    <div class="card-body">
     <h2>${this.info.title}</h2>
-    <article>
-      <p>${this.info.extract}</p>
-    </article>
-    <footer>
-      <p>${button}</p>
-    </footer>
+      <article>
+        <p>${this.info.extract}</p>
+      </article>
+      <footer>
+        <p>${button} guardar</p>
+      </footer>
+    </div>
   </section>
   `;
   return this.elements;

@@ -17,7 +17,7 @@ FavoriteButton.prototype.removeFromLocalStorage = function() {
 }
 
 FavoriteButton.prototype.generate = function() {
-  return this.elements = `<img class="favoriteButton" src="${this.heart}" width="50px"/>`;
+  return this.elements = `<img class="favoriteButton" src="${this.heart}"/>`;
 }
 
 FavoriteButton.prototype.changeButtonState = function(isClicked) {

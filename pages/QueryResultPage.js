@@ -9,18 +9,25 @@ function QueryResultPage(parentElement, style) {
 
 QueryResultPage.prototype.generate = async function() {
   await this.connnectToAPI();
+  this.elements = `
+  <section id="header-section">
+  <h2>create your own library</h2>`;
   var searchInput = new SearchInput(this.parentElement);
-  this.elements = searchInput.generate();
+  this.elements += searchInput.generate();
+  this.elements += `</section>`;
   this.elements += `
   <section class="query-list-section">
     <ul>
   `;
-  this.queries.forEach((query) => {
+  this.queries.forEach((query, index) => {
     var url = (query.title).split(' ').join('%20');
     this.elements += `
       <li>
-        <a href="#0" url="${url}">${query.title}</a>
-        <p>${query.snippet}</p>
+        <div class="li-index">${index+1}</div>
+        <div class="li-body">
+          <a href="#0" url="${url}">${query.title}</a>
+          <p>${query.snippet}</p>
+        </div>
       </li>
     `
   });
@@ -43,13 +50,14 @@ QueryResultPage.prototype.render = function() {
 }
 
 QueryResultPage.prototype.addEventListenerToList = function() {
-  var links = document.querySelectorAll('.query-list-section ul li a');
+  var links = document.querySelectorAll('.query-list-section ul li');
   links.forEach((link) => {
     link.addEventListener('click', this.changePage);
   })
 }
 
 QueryResultPage.prototype.changePage = function(event) {
-  var url = event.target.attributes.url.value;
+  event.stopPropagation();
+  var url = event.currentTarget.children[1].childNodes[1].attributes[1].value;
   routerInstance.buildDom(url, this.parentElement);
 }

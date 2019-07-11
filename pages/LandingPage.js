@@ -23,7 +23,7 @@ LandingPage.prototype.render = function() {
 
 LandingPage.prototype.textAnimationListener = function() {
   //document.addEventListener('DOMContentLoaded', function(event) {
-    var dataText = [ "create your own library", "search about anything", "be happy...", "...even though CSS"];
+    var dataText = [ "search about any topic", "make your own library", "be happy...", "...even though CSS"];
     function typeWriter(text, i, fnCallback) {
       if (i <= (text.length)) {
       document.querySelector("#header-section h2").innerHTML = text.substring(0, i+1);
