@@ -14,9 +14,12 @@ function CardInfoPage(parentElement, query) {
 
 CardInfoPage.prototype.generate = async function() {
   await this.connnectToAPI();
+  this.elements = `
+    <h2 class="card-info-header">Here is your card</h2>
+  `;
   var card = new Card(this.info, this.parentElement, this.callback);
   this.cards.push(card);
-  this.elements = card.generate();
+  this.elements += card.generate();
   this.render();
   this.addListenerToFavoriteButton();
 }
