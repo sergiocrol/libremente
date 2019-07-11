@@ -10,9 +10,10 @@ function Navbar(parentElement, links, style) {
 Navbar.prototype.generate = function() {
   var homeButton = new HomeButton(this.parentElement, 'image');
   this.elements = homeButton.generate();
+  this.elements += '<a id="menu-button"><img src="images/menu.svg"/></a>';
   this.elements += `
-  <nav>  
-    <ul>
+  <nav class="toggle">  
+    <ul class="block">
   `
   this.links.forEach((element) => {
     this.elements += `
@@ -25,8 +26,16 @@ Navbar.prototype.generate = function() {
   `
   this.render();
   homeButton.addEventListenerToHomeButton();
+  this.menuButtonAddEventListener();
 }
 
 Navbar.prototype.render = function() {
   this.parentElement.innerHTML = this.elements;
+}
+
+Navbar.prototype.menuButtonAddEventListener = function() {
+  var menuButton = document.querySelector('#menu-button');
+  menuButton.addEventListener('click', (event) => {
+    event.target.offsetParent.children[2].classList.toggle('toggle');
+  })
 }

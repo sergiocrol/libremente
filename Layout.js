@@ -13,7 +13,7 @@ Layout.prototype.generate = function() {
   this.elements = `
     <header id="header-site"></header>
     <main id="main-site"></main>
-    <footer id="footer-site"></footer>
+    <footer id="footer-site">footer</footer>
   `
   this.render();
   this.getContainers();

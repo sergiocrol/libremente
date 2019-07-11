@@ -8,8 +8,10 @@ function SearchInput(parentElement, style) {
 
 SearchInput.prototype.generate = function() {
   this.elements = `
-  <input id="search-input" type="text" name="text" placeholder="Franz Kafka">
-  <input id="search-button" type="button" value="send">
+  <div id="search-container">
+    <input id="search-input" type="text" name="text" placeholder="Franz Kafka" autofocus>
+    <div id="search-button">></div>
+  </div>
   `;
   return this.elements;
 }
