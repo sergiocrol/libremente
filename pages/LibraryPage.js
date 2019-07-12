@@ -12,17 +12,20 @@ function LibraryPage(parentElement) {
 }
 
 LibraryPage.prototype.generate = async function() {
-  this.elements = '<h2>Library page</h2>';
+  this.elements = '<h2 class="card-info-header">your library</h2>';
   var list = this.allStorage();
   var l = list.filter(function(li) {
-    return li.includes('%20');
+    return li.includes('$!');
   })
+  
   for (const el of l) {
-    await this.connnectToAPI(el);
+    var key = window.localStorage[el];
+    key = key.split(' ').join('%20');
+    await this.connnectToAPI(key);
   }
   this.saveElements();
-  //console.log(this.elements);
   this.render();
+  this.removeButtonListener();
 }
 
 LibraryPage.prototype.render = function() {
@@ -35,6 +38,7 @@ LibraryPage.prototype.allStorage = function() {
   var keys = Object.keys(myStorage);
   var i = keys.length;
   while(i--) {
+    //console.log(myStorage[keys[i]]);
     values.push(keys[i]);
   }
   return values;
@@ -50,28 +54,28 @@ LibraryPage.prototype.connnectToAPI = async function(el) {
 }
 
 LibraryPage.prototype.saveElements = function() {
-  //var el = '';
-  this.arrayCards.forEach((card) => {
-    console.log(card);
+  this.arrayCards.forEach((card, index, array) => {
     this.info.picture = card[2];
     this.info.title = card[0];
     this.info.extract = card[1];
     var c = new Card(this.info, this.parentElement);
     this.elements += c.generate();
-    /*el += `<section class="card">
-    <div class="card-image">
-      <img src="${this.info.picture}"/>
-    </div>
-    <div class="card-body">
-    <h2>${this.info.title}</h2>
-      <article>
-      ${this.info.extract}
-      </article>
-      <footer>
-        <p><img class="favoriteButton" src="images/heart.png"/>  guardar</p>
-      </footer>
-    </div>
-  </section>`*/
+    if(index != array.length-1) {
+      this.elements += `<h2 class="ellipsis">● ● ●</h2>`
+    }
   })
-  //return el;
+}
+
+LibraryPage.prototype.removeButtonListener = function() {
+  var buttons = document.querySelectorAll('.card-body footer p');
+  buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      console.log(event);
+      var index = event.target.parentElement.parentElement.childNodes[1].innerHTML;
+      index = index.split(' ').join('%20');
+      index = index+'$!';
+      window.localStorage.removeItem(index);
+      event.target.parentElement.parentElement.parentElement.remove();
+    })
+  })
 }
