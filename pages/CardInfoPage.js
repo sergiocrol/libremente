@@ -21,7 +21,9 @@ CardInfoPage.prototype.generate = async function() {
   this.cards.push(card);
   this.elements += card.generate();
   this.render();
-  this.addListenerToFavoriteButton();
+  var landingPage = new LandingPage(this.parentElement);
+  landingPage.favoriteButtonListener();
+  //this.addListenerToFavoriteButton();
 }
 
 CardInfoPage.prototype.render = function() {

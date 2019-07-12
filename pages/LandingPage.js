@@ -3,9 +3,13 @@
 function LandingPage(parentElement) {
   this.parentElement = parentElement;
   this.elements = null;
+  this.storage = null;
 }
 
 LandingPage.prototype.generate = function() {
+  var library = new LibraryPage(this.parentElement);
+  this.storage = library.allStorage();
+  console.log(this.storage);
   this.elements = `
   <section id="header-section">
   <h2>create your own library</h2>`;
@@ -15,6 +19,7 @@ LandingPage.prototype.generate = function() {
   this.elements += `<h2 class="card-info-header">suggested topics</h2>`;
   this.elements += this.randomCards();
   this.render();
+  this.favoriteButtonListener();
   searchInput.addEventListenerToSearchButton();
   this.textAnimationListener();
 }
@@ -79,6 +84,8 @@ LandingPage.prototype.randomCards = function() {
   var element = '';
   for(var i=0; i<=2; i++) {
     var randomCard = cards[Math.floor(Math.random()*cards.length)];
+    var button = (this.storage.includes(randomCard[1].split(' ').join('%20'))) ? 'eliminar' : 'guardar';
+    var src = (this.storage.includes(randomCard[1].split(' ').join('%20'))) ? 'images/heartBroken.png' : 'images/heart.png';
     element += `<section class="card">
     <div class="card-image">
       <img src="${randomCard[0]}"/>
@@ -89,11 +96,32 @@ LandingPage.prototype.randomCards = function() {
       ${randomCard[2]}
       </article>
       <footer>
-        <p><img class="favoriteButton" src="images/heart.png"/> guardar</p>
+        <p><img class="favoriteButton" src="${src}"/>  ${button}</p>
       </footer>
     </div>
-  </section>
-  <h2 class="ellipsis">● ● ●</h2>`
+  </section>`
+  if(i<2){element += `<h2 class="ellipsis">● ● ●</h2>`}
   }
   return element;
+}
+
+LandingPage.prototype.favoriteButtonListener = function() {
+  var favoriteButtons = document.querySelectorAll('.card-body footer p');
+  favoriteButtons.forEach((el) => {
+    el.addEventListener('click', (event) => {
+      console.log(el);
+      var card = el.parentElement.parentElement.parentElement;
+      var title = card.childNodes[3].childNodes[1].innerHTML;
+      title = title.split(' ').join('%20');
+      if(el.lastChild.nodeValue.trim() === 'guardar') {
+        window.localStorage.setItem(title, title);
+        el.lastChild.nodeValue = ' eliminar';
+        el.childNodes[0].src = 'images/heartBroken.png';
+      }else{
+        window.localStorage.removeItem(title);
+        el.lastChild.nodeValue = ' guardar';
+        el.childNodes[0].src = 'images/heart.png';
+      }
+    })
+  })
 }
