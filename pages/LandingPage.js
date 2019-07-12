@@ -28,7 +28,6 @@ LandingPage.prototype.render = function() {
 }
 
 LandingPage.prototype.textAnimationListener = function() {
-  //document.addEventListener('DOMContentLoaded', function(event) {
     var dataText = [ "search about any topic", "make your own library", "be happy...", "...even though CSS"];
     function typeWriter(text, i, fnCallback) {
       if (i <= (text.length)) {
@@ -98,7 +97,7 @@ LandingPage.prototype.randomCards = function() {
         <p><img class="favoriteButton" src="${src}"/>  ${button}</p>
       </footer>
     </div>
-  </section>`
+  </section>`;
   if(i<cards.length-1){element += `<h2 class="ellipsis">● ● ●</h2>`}
   cards.splice(cards.indexOf(randomCard),1);
   }

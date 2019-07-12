@@ -25,16 +25,9 @@ Navbar.prototype.generate = function() {
   `
   this.render();
   homeButton.addEventListenerToHomeButton();
-  this.menuButtonAddEventListener();
+
 }
 
 Navbar.prototype.render = function() {
   this.parentElement.innerHTML = this.elements;
-}
-
-Navbar.prototype.menuButtonAddEventListener = function() {
-  var menuButton = document.querySelector('#menu-button');
-  menuButton.addEventListener('click', (event) => {
-    event.target.offsetParent.children[2].classList.toggle('toggle');
-  })
 }

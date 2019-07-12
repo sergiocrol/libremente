@@ -48,6 +48,8 @@ HomeButton.prototype.addEventListenerToHomeButton = function() {
 
 HomeButton.prototype.changePage = function(event) {
   console.log(event);
-  var url = event.path[1].attributes[2].value;
-  routerInstance.buildDom(url, event.path[3].childNodes[3]);
+  var url = event.target.parentElement.attributes[2].value;
+  //var url = event.path[1].attributes[2].value;
+  //routerInstance.buildDom(url, event.path[3].childNodes[3]);
+  routerInstance.buildDom(url, event.target.parentElement.parentElement.parentElement.childNodes[3]);
 }

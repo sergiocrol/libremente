@@ -363,6 +363,7 @@ input, button, submit { border: none; }
 
 .card footer:hover {
   color: white;
+  cursor: pointer;
 }
 
 .card footer:hover .favoriteButton {
@@ -385,6 +386,7 @@ input, button, submit { border: none; }
 
 .card footer:hover::after {
   width: 100%;
+  cursor: pointer;
 }
 }
 
@@ -403,6 +405,7 @@ input, button, submit { border: none; }
   
   .card footer:hover::before {
     top: -10%;
+    cursor: pointer;
   }
 }
 
@@ -517,6 +520,10 @@ background: #ec6685;
 
 .logo-animation {
   animation: col 30s ease-in-out infinite;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 @keyframes col {
