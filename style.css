@@ -59,7 +59,7 @@ html, body {
   z-index: 1;
 }
 
-#header-site nav ul li a {
+#header-site nav ul li a{
   color: black;
   position: relative;
   text-decoration: none;
@@ -122,11 +122,10 @@ input, button, submit { border: none; }
 }
 
 #header-site nav {
-  height: 150px;
-  width: 100%;
-  position: absolute;
-  bottom: -150px;
-  background-color: blueviolet;
+  height: 55px;
+  display: block;
+  position: static;
+  background-color: transparent;
 }
 
 @media (min-width: 768px) {
@@ -140,38 +139,19 @@ input, button, submit { border: none; }
 
 #header-site nav ul{
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 100%;
+  align-items: center;
 }
 
-
-@media (min-width: 768px) {
-  #header-site nav ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    height: 100%;
-    align-items: center;
-  }
-
-  #header-site nav ul li{
-    padding-right: 10px;
-  }
-
-  #header-site nav ul li a{
-    margin-right: 10px;
-    text-decoration: none;
-  }
+#header-site nav ul li{
+  padding-right: 10px;
 }
 
-#menu-button img {
-  width: 30px;
-}
-
-@media (min-width: 768px) {
-  #menu-button img {
-    display: none;
-  }
+#header-site nav ul li a{
+  margin-right: 10px;
+  text-decoration: none;
 }
 
 #search-input {
@@ -660,4 +640,14 @@ background: #ec6685;
   to {
     -webkit-filter: hue-rotate(-360deg);
   }
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  font-weight: bold;
 }

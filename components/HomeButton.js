@@ -48,7 +48,6 @@ HomeButton.prototype.addEventListenerToHomeButton = function() {
 
 HomeButton.prototype.changePage = function(event) {
   console.log(event);
-  //var parent = (event.target.localName === 'img') ? this.parentElement.nextElementSibling : this.parentElement;
-  var url = event.path[2].attributes[2].value;
-  routerInstance.buildDom(url, event.path[3].nextElementSibling);
+  var url = event.path[1].attributes[2].value;
+  routerInstance.buildDom(url, event.path[3].childNodes[3]);
 }

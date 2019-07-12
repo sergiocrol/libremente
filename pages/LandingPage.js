@@ -81,7 +81,7 @@ LandingPage.prototype.randomCards = function() {
     ]
   ]
   var element = '';
-  for(var i=0; i<=2; i++) {
+  for(var i=0; i<=cards.length; i++) {
     var randomCard = cards[Math.floor(Math.random()*cards.length)];
     var button = (this.storage.includes(randomCard[1].split(' ').join('%20')+'$!')) ? 'eliminar' : 'guardar';
     var src = (this.storage.includes(randomCard[1].split(' ').join('%20')+'$!')) ? 'images/heartBroken.png' : 'images/heart.png';
@@ -99,7 +99,8 @@ LandingPage.prototype.randomCards = function() {
       </footer>
     </div>
   </section>`
-  if(i<2){element += `<h2 class="ellipsis">● ● ●</h2>`}
+  if(i<cards.length-1){element += `<h2 class="ellipsis">● ● ●</h2>`}
+  cards.splice(cards.indexOf(randomCard),1);
   }
   return element;
 }

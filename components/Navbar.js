@@ -10,7 +10,6 @@ function Navbar(parentElement, links, style) {
 Navbar.prototype.generate = function() {
   var homeButton = new HomeButton(this.parentElement, 'image');
   this.elements = homeButton.generate();
-  this.elements += '<a id="menu-button"><img src="images/menu.svg"/></a>';
   this.elements += `
   <nav class="toggle">  
     <ul class="block">

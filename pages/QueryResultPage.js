@@ -5,6 +5,7 @@ function QueryResultPage(parentElement, style) {
   this.style = null;
   this.elements = null;
   this.queries = null;
+  this.loading = null;
 }
 
 QueryResultPage.prototype.generate = async function() {
@@ -42,6 +43,8 @@ QueryResultPage.prototype.generate = async function() {
 
 QueryResultPage.prototype.connnectToAPI = async function() {
   var searchInput = document.querySelector('#search-input');
+  this.loading = new Loading(this.parentElement);
+  this.loading.generate();
   this.queries = await WikipediaServiceInstance.getQueryResult(searchInput.value.trim());
 }
 

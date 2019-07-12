@@ -45,6 +45,8 @@ LibraryPage.prototype.allStorage = function() {
 }
 
 LibraryPage.prototype.connnectToAPI = async function(el) {
+  this.loading = new Loading(this.parentElement);
+  this.loading.generate();
   var text = await WikipediaServiceInstance.getSearchResult(el);
   var card = [];
   card[0] = text.title;
@@ -75,6 +77,7 @@ LibraryPage.prototype.removeButtonListener = function() {
       index = index.split(' ').join('%20');
       index = index+'$!';
       window.localStorage.removeItem(index);
+      console.dir(event);
       event.target.parentElement.parentElement.parentElement.remove();
     })
   })

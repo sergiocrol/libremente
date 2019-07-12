@@ -31,6 +31,8 @@ CardInfoPage.prototype.render = function() {
 }
 
 CardInfoPage.prototype.connnectToAPI = async function() {
+  this.loading = new Loading(this.parentElement);
+  this.loading.generate();
   var text = await WikipediaServiceInstance.getSearchResult(this.query);
   this.info.title = text.title;
   this.info.extract = text.extract;
