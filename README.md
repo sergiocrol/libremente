@@ -176,11 +176,9 @@ Definition of the different states and their transition (transition functions)
 ## Links
 
 ### Git
-URls for the project repo and deploy
-[Link Repo](https://github.com/sergiocrol/libremente)
+[Link Repo](https://github.com/sergiocrol/libremente) <br>
 [Link Deploy](https://sergiocrol.github.io/libremente/.)
 
 
 ### Slides
-URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+[Link slides](https://docs.google.com/presentation/d/1MumXcUYIcDdbyDJFmly5sv37Hm0xTc64Xtn7R5vbJ6s/edit?usp=sharing)
